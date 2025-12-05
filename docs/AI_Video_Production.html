@@ -1,0 +1,1691 @@
+<!DOCTYPE html><html lang="ru"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AI Video Production Methodology - November 2025</title>
+    <script src="https://cdn.tailwindcss.com "></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital ,wght@0,400;0,700;1,400&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css "/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1e40af',
+                        'secondary': '#64748b',
+                        'accent': '#f59e0b',
+                        'neutral': '#374151',
+                        'base': '#f8fafc',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            z-index: 40;
+            background: rgba(248, 250, 252, 0.98);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid #e2e8f0;
+        }
+        .content-main {
+            margin-left: 280px;
+        }
+        @media (max-width: 1024px) {
+            .toc-fixed {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            .toc-fixed.mobile-open {
+                transform: translateX(0);
+            }
+            .content-main {
+                margin-left: 0;
+            }
+        }
+        .citation {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .citation:hover {
+            text-decoration: underline;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 1.5rem;
+            height: auto;
+        }
+        .bento-main {
+            grid-row: 1 / 3;
+        }
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+            .bento-main {
+                grid-row: auto;
+            }
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="bg-base font-sans text-neutral leading-relaxed">
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed overflow-y-auto">
+      <div class="p-6">
+        <h3 class="font-serif font-bold text-lg mb-4 text-primary">Оглавление</h3>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="#introduction" class="block py-1 px-2 rounded hover:bg-blue-50 transition-colors">1. Введение и обзор</a>
+          </li>
+          <li>
+            <a href="#ecosystem" class="block py-1 px-2 rounded hover:bg-blue-50 transition-colors">2. Экосистема AI-инструментов</a>
+          </li>
+          <li>
+            <a href="#methodologies" class="block py-1 px-2 rounded hover:bg-blue-50 transition-colors">3. Практические методологии</a>
+          </li>
+          <li>
+            <a href="#popular-workflows" class="block py-1 px-2 rounded hover:bg-blue-50 transition-colors">4. Популярные Workflow</a>
+          </li>
+          <li>
+            <a href="#tips" class="block py-1 px-2 rounded hover:bg-blue-50 transition-colors">5. Практические советы</a>
+          </li>
+          <li>
+            <a href="#appendix" class="block py-1 px-2 rounded hover:bg-blue-50 transition-colors">6. Приложения</a>
+          </li>
+          <li>
+            <a href="#conclusion" class="block py-1 px-2 rounded hover:bg-blue-50 transition-colors">7. Заключение</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Mobile TOC Toggle -->
+    <button class="lg:hidden fixed top-4 left-4 z-50 bg-primary text-white p-2 rounded-md shadow-lg" onclick="toggleMobileTOC()">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <main class="content-main">
+      <!-- Hero Section with Bento Layout -->
+      <section class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div class="container mx-auto px-6 py-12 relative z-10">
+          <div class="bento-grid max-w-7xl">
+            <!-- Main Content -->
+            <div class="bento-main flex flex-col justify-center">
+              <div class="mb-8">
+                <span class="inline-block bg-white bg-opacity-20 text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
+                  <i class="fas fa-video mr-2"></i>AI Video Production
+                </span>
+                <h1 class="font-serif text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 text-shadow italic leading-tight">
+                  Комплексная методология
+                  <span class="block text-2xl md:text-3xl lg:text-5xl mt-2 text-blue-200">AI-производства видео</span>
+                </h1>
+                <p class="text-base md:text-xl text-blue-100 mb-8 max-w-full md:max-w-2xl leading-relaxed">
+                  Полное руководство для создания корпоративных видео с использованием нейросетей. Доступность, экономичность и профессиональное качество для непрофессиональных создателей контента.
+                </p>
+                <div class="flex flex-wrap gap-4 text-sm text-blue-200">
+                  <span><i class="fas fa-calendar mr-2"></i>Ноябрь 2025</span>
+                  <span><i class="fas fa-clock mr-2"></i>Время производства: &lt;8 часов</span>
+                  <span><i class="fas fa-dollar-sign mr-2"></i>Бюджет: &lt;$100/месяц</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Key Highlights -->
+            <div class="space-y-4">
+              <div class="glass-effect p-6 rounded-2xl">
+                <h3 class="font-serif text-xl font-bold mb-3 text-primary">
+                  <i class="fas fa-rocket mr-2"></i>Ключевые преимущества
+                </h3>
+                <ul class="space-y-2 text-sm">
+                  <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Доступность для новичков</li>
+                  <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Экономичность (&lt;$100/месяц)</li>
+                  <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Воспроизводимые результаты</li>
+                  <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Высокая эффективность</li>
+                </ul>
+              </div>
+
+              <div class="glass-effect p-6 rounded-2xl">
+                <h3 class="font-serif text-xl font-bold mb-3 text-primary">
+                  <i class="fas fa-cogs mr-2"></i>Топ платформы
+                </h3>
+                <div class="space-y-2 text-sm">
+                  <div class="flex items-center justify-between">
+                    <span>Google Veo 3.1</span>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">⭐ Лучший</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span>Kling AI</span>
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">До 3 минут</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span>Krea AI</span>
+                    <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Все в одном</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Introduction Section -->
+      <section id="introduction" class="py-16 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl">
+          <h2 class="font-serif text-4xl font-bold mb-8 text-primary">1. Введение и обзор</h2>
+
+          <div class="prose prose-lg max-w-none">
+            <h3 class="font-serif text-2xl font-bold mb-4 text-neutral">1.1 Цель методологии</h3>
+            <p class="mb-6 text-secondary leading-relaxed">
+              Данная методология предназначена для непрофессиональных создателей контента (ученых, преподавателей, консультантов, маркетологов), которым необходимо создавать профессиональные видеоролики без традиционных навыков видеопроизводства и дорогостоящего оборудования. Она предоставляет исчерпывающее руководство по использованию современных AI-инструментов для создания корпоративных видео, демократизируя процесс видеопроизводства и делая его доступным для широкого круга пользователей.
+            </p>
+
+            <div class="bg-blue-50 border-l-4 border-primary p-6 mb-8">
+              <h4 class="font-semibold text-primary mb-2">
+                <i class="fas fa-lightbulb mr-2"></i>Ключевое отличие
+              </h4>
+              <p class="text-sm text-secondary">
+                Методология охватывает весь цикл производства: от планирования и генерации контента до монтажа и финализации, предлагая конкретные инструменты и пошаговые инструкции.
+              </p>
+            </div>
+
+            <h3 class="font-serif text-2xl font-bold mb-6 text-neutral">1.2 Ключевые принципы</h3>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+              <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl">
+                <h4 class="font-bold text-lg mb-3 text-primary">
+                  <i class="fas fa-universal-access mr-2"></i>Доступность
+                </h4>
+                <p class="text-sm text-secondary">
+                  Все инструкции выполнимы новичками с базовыми компьютерными навыками. Фокус на платформах с интуитивным интерфейсом и no-code решениями.
+                </p>
+              </div>
+
+              <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl">
+                <h4 class="font-bold text-lg mb-3 text-green-700">
+                  <i class="fas fa-coins mr-2"></i>Экономичность
+                </h4>
+                <p class="text-sm text-secondary">
+                  Фокус на бесплатных или доступных инструментах (<strong>&lt;$100/месяц</strong>). Включены как премиум-решения, так и бюджетные альтернативы.
+                </p>
+              </div>
+
+              <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl">
+                <h4 class="font-bold text-lg mb-3 text-purple-700">
+                  <i class="fas fa-sync mr-2"></i>Воспроизводимость
+                </h4>
+                <p class="text-sm text-secondary">
+                  Единый процесс дает стабильные профессиональные результаты. Четкие инструкции, чек-листы и шаблонные workflow.
+                </p>
+              </div>
+
+              <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl">
+                <h4 class="font-bold text-lg mb-3 text-orange-700">
+                  <i class="fas fa-clock mr-2"></i>Эффективность
+                </h4>
+                <p class="text-sm text-secondary">
+                  Общее время производства <strong>менее 8 часов</strong> на видео. Автоматизация рутинных задач с помощью AI-инструментов.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-2xl">
+              <h4 class="font-bold text-xl mb-4">
+                <i class="fas fa-award mr-2"></i>Качество
+              </h4>
+              <p class="text-blue-100">
+                Финальный продукт соответствует стандартам основных платформ. Использование передовых AI-моделей, таких как Google Veo 3.1, Kling AI и ElevenLabs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ecosystem Section -->
+      <section id="ecosystem" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-6xl">
+          <h2 class="font-serif text-4xl font-bold mb-12 text-primary">2. Экосистема AI-инструментов</h2>
+
+          <!-- Aggregator Platforms -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-neutral">2.1 Платформы-агрегаторы</h3>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+              <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-blue-500">
+                <div class="flex items-center mb-4">
+                  <img src="https://kimi-web-img.moonshot.cn/img/pbs.twimg.com/347c2dae7e8bbdd17a672b8d76174b481c80f261.jpg " alt="HiggsField AI logo" class="w-12 h-12 rounded-lg mr-4" size="small" aspect="square" query="HiggsField AI logo" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                  <div>
+                    <h4 class="font-bold text-lg text-primary">HiggsField AI</h4>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Премиум агрегатор</span>
+                  </div>
+                </div>
+                <p class="text-secondary text-sm mb-4">
+                  Единая подписка на несколько AI-инструментов: <strong>Unlimited Kling, Minimax, Seedance</strong>. Готовые пресеты, профессиональные VFX, кинематографические движения камеры.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500">Корпоративные планы</span>
+                  <a href="https://higgsfield.ai " class="citation text-xs">
+                    <i class="fas fa-external-link-alt mr-1"></i>Официальный сайт
+                  </a>
+                </div>
+                <div class="mt-3 p-3 bg-yellow-50 rounded-lg">
+                  <p class="text-xs text-yellow-800">
+                    <i class="fas fa-exclamation-triangle mr-1"></i>
+                    ⚠️ Пользователи сообщают о проблемах с надежностью после истечения &#34;unlimited&#34; периода
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-green-500">
+                <div class="flex items-center mb-4">
+                  <img src="https://kimi-web-img.moonshot.cn/img/cdn.brandfetch.io/5d1bc44657b768829fd2b20244b128172b6cd2ba.jpeg " alt="Descript company logo" class="w-12 h-12 rounded-lg mr-4" size="small" aspect="square" query="Descript logo" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                  <div>
+                    <h4 class="font-bold text-lg text-primary">Descript</h4>
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Редактор с AI</span>
+                  </div>
+                </div>
+                <p class="text-secondary text-sm mb-4">
+                  <strong>Революционный подход:</strong> монтаж видео через редактирование текста. Транскрипция, AI-аватары, клонирование голоса, автоматические субтитры.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500">От $12/месяц</span>
+                  <a href="https://www.descript.com " class="citation text-xs">
+                    <i class="fas fa-external-link-alt mr-1"></i>Официальный сайт
+                  </a>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-purple-500">
+                <div class="flex items-center mb-4">
+                  <img src="https://kimi-web-img.moonshot.cn/img/is1-ssl.mzstatic.com/43e679d144c2358f15de3fc2b4be88de65b42c58.jpg " alt="Krea AI platform logo" class="w-12 h-12 rounded-lg mr-4" size="small" aspect="square" query="Krea AI logo" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                  <div>
+                    <h4 class="font-bold text-lg text-primary">Krea AI ⭐</h4>
+                    <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Универсальная платформа</span>
+                  </div>
+                </div>
+                <p class="text-secondary text-sm mb-4">
+                  Доступ к <strong>Veo 3, Kling, Hailuo, Wan, Runway</strong>. Real-time генерация изображений &lt;50мс, 1000+ стилей.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500">От $10/месяц</span>
+                  <a href="https://www.krea.ai " class="citation text-xs">
+                    <i class="fas fa-external-link-alt mr-1"></i>krea.ai
+                  </a>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-orange-500">
+                <div class="flex items-center mb-4">
+                  <img src="https://kimi-web-img.moonshot.cn/img/media.licdn.com/667c95c51bb7c3ee2d08831045d39d8ef0b7686e " alt="Fal.AI platform logo" class="w-12 h-12 rounded-lg mr-4" size="small" aspect="square" query="Fal.AI logo" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                  <div>
+                    <h4 class="font-bold text-lg text-primary">Fal.AI</h4>
+                    <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">Скоростная платформа</span>
+                  </div>
+                </div>
+                <p class="text-secondary text-sm mb-4">
+                  600+ производственных моделей. <strong>В 10 раз быстрее</strong> альтернатив. Pay-per-use модель.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500">Pay-per-use</span>
+                  <a href="https://fal.ai " class="citation text-xs">
+                    <i class="fas fa-external-link-alt mr-1"></i>fal.ai
+                  </a>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-teal-500">
+                <div class="flex items-center mb-4">
+                  <div class="bg-teal-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-brain text-teal-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-lg text-primary">Giga.Chat + Kandinsky 5.0 ⭐</h4>
+                    <span class="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded">Российская платформа</span>
+                  </div>
+                </div>
+                <p class="text-secondary text-sm mb-4">
+                  <strong>Открытый доступ к Kandinsky 5.0</strong> через веб-интерфейс Giga.Chat. Поддержка генерации изображений и видео, работа на русском языке, интуитивный интерфейс.
+                </p>
+                <div class="bg-yellow-50 p-3 rounded-lg mb-4">
+                  <h5 class="font-semibold text-sm mb-2 text-yellow-800">Особенности:</h5>
+                  <ul class="text-xs text-yellow-700 space-y-1">
+                    <li>• Авторизация через Сбер ID</li>
+                    <li>• Русскоязычный интерфейс и промпты</li>
+                    <li>• Редактирование результатов (вариации, upscale)</li>
+                    <li>• Поддержка отрицательных промптов</li>
+                  </ul>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500">Бесплатный доступ</span>
+                  <a href="https://giga.chat " class="citation text-xs">
+                    <i class="fas fa-external-link-alt mr-1"></i>giga.chat
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video Generators -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-neutral">2.2 Видеогенераторы</h3>
+
+            <!-- Leaders in Photorealism -->
+            <div class="mb-8">
+              <h4 class="font-bold text-xl mb-6 text-primary flex items-center">
+                <i class="fas fa-crown mr-3 text-yellow-500"></i>
+                Лидеры фотореализма и длительности (до 2+ минут)
+              </h4>
+
+              <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="flex flex-col sm:flex-row items-start mb-6">
+                  <div class="bg-blue-100 p-3 rounded-full mr-0 sm:mr-4 mb-4 sm:mb-0">
+                    <i class="fas fa-star text-blue-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h5 class="font-bold text-lg text-primary mb-2">Google Veo 3.1 через Flow</h5>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                      <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">State-of-the-art</span>
+                      <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Встроенное аудио</span>
+                      <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">1080p</span>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-secondary mb-4">
+                  <strong>275+ миллионов видео создано с мая 2025</strong>. True-to-life текстуры, богатое аудиосопровождение (диалоги, эффекты, окружающие звуки). Два режима: Quality и Fast.
+                </p>
+                <div class="grid md:grid-cols-3 gap-4 mb-4">
+                  <div class="bg-gray-50 p-3 rounded-lg">
+                    <h6 class="font-semibold text-sm mb-1">Ingredients to Video</h6>
+                    <p class="text-xs text-secondary">Создание консистентных видео из ваших материалов</p>
+                  </div>
+                  <div class="bg-gray-50 p-3 rounded-lg">
+                    <h6 class="font-semibold text-sm mb-1">Extend</h6>
+                    <p class="text-xs text-secondary">Продление видео до минуты</p>
+                  </div>
+                  <div class="bg-gray-50 p-3 rounded-lg">
+                    <h6 class="font-semibold text-sm mb-1">Insert</h6>
+                    <p class="text-xs text-secondary">Добавление элементов в видео</p>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <div class="text-sm">
+                    <span class="line-through text-gray-400">$0.40/сек</span>
+                    <span class="text-green-600 font-bold ml-2">$0.15/сек (Fast mode)</span>
+                  </div>
+                  <a href="https://labs.google/fx/tools/flow " class="citation text-sm">
+                    <i class="fas fa-external-link-alt mr-1"></i>Flow Platform
+                  </a>
+                </div>
+              </div>
+
+              <div class="grid lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                  <h5 class="font-bold text-lg text-primary mb-3">Kling AI 1.6+ ⭐</h5>
+                  <p class="text-secondary text-sm mb-4">
+                    <strong>Лидер по длительности:</strong> до 2 минут (Pro версия), расширение до 3 минут. 1080p, KLING 2.1 с Start &amp; End Frames.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">5+ млн загрузок</span>
+                    <a href="https://klingai.com " class="citation text-xs">
+                      <i class="fas fa-external-link-alt mr-1"></i>klingai.com
+                    </a>
+                  </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                  <h5 class="font-bold text-lg text-primary mb-3">Sora 2 / Sora 2 Pro</h5>
+                  <p class="text-secondary text-sm mb-4">
+                    Флагман OpenAI. <strong>Физически точная генерация</strong>, 20 секунд в 1080p. Запущена 29 сентября 2025.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Web + Mobile</span>
+                    <a href="https://openai.com/index/sora-2/ " class="citation text-xs">
+                      <i class="fas fa-external-link-alt mr-1"></i>sora.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image Generators -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-neutral">2.3 Генераторы изображений</h3>
+
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+              <div class="flex items-center mb-6">
+                <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                  <i class="fas fa-image text-yellow-600 text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-xl text-primary mb-2">Seedream 4.0 ⭐</h4>
+                  <p class="text-sm text-secondary">Революционная модель от ByteDance</p>
+                </div>
+              </div>
+
+              <div class="grid lg:grid-cols-3 gap-6 mb-6">
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-primary mb-2">12B</div>
+                  <p class="text-sm text-secondary">параметров</p>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-green-600 mb-2">1.8с</div>
+                  <p class="text-sm text-secondary">генерация 2K</p>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-purple-600 mb-2">9</div>
+                  <p class="text-sm text-secondary">консистентных изображений</p>
+                </div>
+              </div>
+
+              <p class="text-secondary mb-4">
+                Поддержка 4K разрешения, удаление/замена объектов, изменение текста. В <strong>10 раз быстрее</strong> Seedream 3.
+              </p>
+
+              <div class="flex justify-between items-center">
+                <div class="flex gap-2">
+                  <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Krea AI</span>
+                  <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">ImagineArt</span>
+                  <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Fal.AI</span>
+                </div>
+                <a href="https://seed.bytedance.com/en/seedream4_0 " class="citation text-sm">
+                  <i class="fas fa-external-link-alt mr-1"></i>seed.bytedance.com
+                </a>
+              </div>
+            </div>
+
+            <!-- Kandinsky 5.0 Section -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 mt-6">
+              <div class="flex items-center mb-6">
+                <div class="bg-teal-100 p-3 rounded-full mr-4">
+                  <i class="fas fa-brain text-teal-600 text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-xl text-primary mb-2">Kandinsky 5.0 через Giga.Chat</h4>
+                  <p class="text-sm text-secondary">Российская нейросеть от Сбера</p>
+                </div>
+              </div>
+
+              <div class="grid lg:grid-cols-3 gap-6 mb-6">
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-primary mb-2">Русский</div>
+                  <p class="text-sm text-secondary">интерфейс и промпты</p>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-green-600 mb-2">Бесплатно</div>
+                  <p class="text-sm text-secondary">открытый доступ</p>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-purple-600 mb-2">Видео</div>
+                  <p class="text-sm text-secondary">и изображения</p>
+                </div>
+              </div>
+
+              <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                <h5 class="font-semibold text-sm mb-2 text-blue-800">Преимущества:</h5>
+                <ul class="text-xs text-blue-700 space-y-1">
+                  <li>• Не требует VPN для доступа из России</li>
+                  <li>• Интуитивный веб-интерфейс</li>
+                  <li>• Поддержка отрицательных промптов</li>
+                  <li>• Редактирование и улучшение результатов</li>
+                  <li>• Различные стили и пропорции</li>
+                </ul>
+              </div>
+
+              <div class="flex justify-between items-center">
+                <span class="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded">Идеально для русскоязычных пользователей</span>
+                <a href="https://giga.chat " class="citation text-sm">
+                  <i class="fas fa-external-link-alt mr-1"></i>giga.chat
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Audio Solutions -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-neutral">2.4 Аудио-решения</h3>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+              <div class="bg-white rounded-2xl shadow-lg p-8">
+                <div class="flex items-center mb-4">
+                  <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-microphone text-indigo-600 text-xl"></i>
+                  </div>
+                  <h4 class="font-bold text-lg text-primary">ElevenLabs ⭐</h4>
+                </div>
+                <p class="text-secondary text-sm mb-4">
+                  <strong>Лидер эмоционального синтеза</strong>. Клонирование голоса с <strong>30 секунд аудио</strong>, 29 языков, instant и professional режимы.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded">API доступен</span>
+                  <a href="https://elevenlabs.io " class="citation text-xs">
+                    <i class="fas fa-external-link-alt mr-1"></i>elevenlabs.io
+                  </a>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-lg p-8">
+                <div class="flex items-center mb-4">
+                  <div class="bg-pink-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-music text-pink-600 text-xl"></i>
+                  </div>
+                  <h4 class="font-bold text-lg text-primary">Suno v4.5+</h4>
+                </div>
+                <p class="text-secondary text-sm mb-4">
+                  Профессиональная музыкальная генерация. До <strong>8 минут</strong>, динамичная музыка, богатые вокалы, смешивание стилей.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded">ReMi assistant</span>
+                  <a href="https://suno.com " class="citation text-xs">
+                    <i class="fas fa-external-link-alt mr-1"></i>suno.com
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Editing Tools -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-neutral">2.5 Инструменты монтажа</h3>
+
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+              <div class="flex items-center mb-6">
+                <div class="bg-red-100 p-3 rounded-full mr-4">
+                  <i class="fas fa-film text-red-600 text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-xl text-primary mb-2">DaVinci Resolve ⭐</h4>
+                  <p class="text-sm text-secondary">Индустриальный стандарт Голливуда</p>
+                </div>
+              </div>
+
+              <div class="grid md:grid-cols-4 gap-4 mb-6">
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                  <i class="fas fa-cut text-2xl text-primary mb-2"></i>
+                  <h5 class="font-semibold text-sm">Профессиональный монтаж</h5>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                  <i class="fas fa-palette text-2xl text-primary mb-2"></i>
+                  <h5 class="font-semibold text-sm">Лучшая цветокоррекция</h5>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                  <i class="fas fa-magic text-2xl text-primary mb-2"></i>
+                  <h5 class="font-semibold text-sm">Визуальные эффекты</h5>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                  <i class="fas fa-volume-up text-2xl text-primary mb-2"></i>
+                  <h5 class="font-semibold text-sm">Аудио пост-продакшн</h5>
+                </div>
+              </div>
+
+              <div class="bg-green-50 border border-green-200 p-4 rounded-lg">
+                <p class="text-sm text-green-800">
+                  <i class="fas fa-gift mr-2"></i>
+                  <strong>Доступно в двух версиях:</strong> бесплатная (полнофункциональная) и Studio.
+                </p>
+              </div>
+
+              <div class="flex justify-between items-center mt-4">
+                <a href="https://www.blackmagicdesign.com/products/davinciresolve " class="citation text-sm">
+                  <i class="fas fa-external-link-alt mr-1"></i>blackmagicdesign.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Methodologies Section -->
+      <section id="methodologies" class="py-16 bg-white">
+        <div class="container mx-auto px-6 max-w-6xl">
+          <h2 class="font-serif text-4xl font-bold mb-12 text-primary">3. Практические методологии</h2>
+
+          <!-- Distributed Shooting Method -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-neutral">3.1 Вариант 1: Распределенная съемка с AI-обработкой</h3>
+
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-6 mb-8 rounded-r-xl">
+              <h4 class="font-bold text-lg text-primary mb-3">
+                <i class="fas fa-lightbulb mr-2"></i>Концепция
+              </h4>
+              <p class="text-secondary">
+                Сотрудники самостоятельно записывают короткие видео на смартфоны с последующей AI-обработкой для создания унифицированного стиля. Идеально для корпоративных видео, обучающих материалов и внутренних коммуникаций.
+              </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+              <div class="bg-white rounded-2xl shadow-lg p-8">
+                <div class="flex items-center mb-4">
+                  <div class="bg-blue-100 p-3 rounded-full mr-4">
+                    <span class="text-blue-600 font-bold">1</span>
+                  </div>
+                  <h4 class="font-bold text-lg text-primary">Подготовка сотрудников</h4>
+                </div>
+                <ul class="space-y-3 text-sm text-secondary">
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                    <span>Инструкция: 10-15 секундное видео</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-sun text-yellow-500 mr-2 mt-1"></i>
+                    <span>Хорошее естественное освещение</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-home text-gray-500 mr-2 mt-1"></i>
+                    <span>Нейтральный или корпоративный фон</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-camera text-blue-500 mr-2 mt-1"></i>
+                    <span>Стабильная камера</span>
+                  </li>
+                </ul>
+                <div class="mt-4 p-3 bg-gray-50 rounded-lg">
+                  <p class="text-xs text-secondary">
+                    <strong>Инструменты:</strong> Стандартное приложение камеры, Kling AI mobile app, Sora mobile app
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-lg p-8">
+                <div class="flex items-center mb-4">
+                  <div class="bg-green-100 p-3 rounded-full mr-4">
+                    <span class="text-green-600 font-bold">2</span>
+                  </div>
+                  <h4 class="font-bold text-lg text-primary">AI-обработка</h4>
+                </div>
+                <div class="mb-4">
+                  <h5 class="font-semibold text-sm mb-2 text-green-700">Рекомендуемый метод:</h5>
+                  <p class="text-sm text-secondary mb-3">Google Veo 3.1 через Flow</p>
+                  <ul class="space-y-2 text-xs text-secondary">
+                    <li>• Ingredients to Video для консистентности</li>
+                    <li>• Frames to Video для переходов</li>
+                    <li>• Extend для увеличения длительности</li>
+                  </ul>
+                </div>
+                <div class="p-3 bg-blue-50 rounded-lg">
+                  <h5 class="font-semibold text-xs mb-2 text-blue-700">Альтернативы:</h5>
+                  <ul class="text-xs text-secondary space-y-1">
+                    <li>• Kling AI с Start &amp; End Frames</li>
+                    <li>• Sora 2 для реалистичной обработки</li>
+                    <li>• Hailuo 2.3 для batch-обработки</li>
+                    <li>• Wan 2.5 для кинематографичности</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-lg p-8">
+                <div class="flex items-center mb-4">
+                  <div class="bg-purple-100 p-3 rounded-full mr-4">
+                    <span class="text-purple-600 font-bold">3</span>
+                  </div>
+                  <h4 class="font-bold text-lg text-primary">Адаптация и сборка</h4>
+                </div>
+                <div class="mb-4">
+                  <h5 class="font-semibold text-sm mb-2">AI Outpainting:</h5>
+                  <ul class="text-xs text-secondary space-y-1">
+                    <li>• Insert в Flow для добавления окружения</li>
+                    <li>• Автоматическая обработка теней</li>
+                  </ul>
+                </div>
+                <div class="mb-4">
+                  <h5 class="font-semibold text-sm mb-2">DaVinci Resolve:</h5>
+                  <ul class="text-xs text-secondary space-y-1">
+                    <li>• Импорт AI-обработанных клипов</li>
+                    <li>• Единые LUT</li>
+                    <li>• Добавление переходов и графики</li>
+                  </ul>
+                </div>
+                <div class="bg-green-50 p-3 rounded-lg">
+                  <p class="text-xs text-green-700">
+                    <i class="fas fa-check-circle mr-1"></i>
+                    <strong>Преимущества:</strong> Минимальные требования к оборудованию, вовлечение команды, быстрая реализация
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hybrid Production Method -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-neutral">3.2 Вариант 2: Гибридное производство</h3>
+
+            <div class="bg-gradient-to-r from-purple-50 to-pink-50 border-l-4 border-purple-500 p-6 mb-8 rounded-r-xl">
+              <h4 class="font-bold text-lg text-primary mb-3">
+                <i class="fas fa-cogs mr-2"></i>Концепция
+              </h4>
+              <p class="text-secondary">
+                Комбинирование профессиональной съемки ключевых лиц с AI-генерацией массовых сцен, окружения и эффектов. Оптимальный подход для презентаций, рекламных роликов и важных корпоративных видео.
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              <div class="bg-white rounded-2xl shadow-lg p-8">
+                <div class="flex items-center mb-6">
+                  <div class="bg-blue-100 p-3 rounded-full mr-4">
+                    <span class="text-blue-600 font-bold text-lg">30%</span>
+                  </div>
+                  <h4 class="font-bold text-xl text-primary">Профессиональная съемка</h4>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-6">
+                  <div>
+                    <h5 class="font-semibold mb-3 text-secondary">Контент:</h5>
+                    <ul class="space-y-2 text-sm text-secondary">
+                      <li class="flex items-center">
+                        <i class="fas fa-user-tie text-blue-500 mr-2"></i>
+                        CEO и топ-менеджмент в студии
+                      </li>
+                      <li class="flex items-center">
+                        <i class="fas fa-chroma-key text-green-500 mr-2"></i>
+                        Зелёный экран для гибкости
+                      </li>
+                      <li class="flex items-center">
+                        <i class="fas fa-video text-purple-500 mr-2"></i>
+                        Запись в 4K
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold mb-3 text-secondary">Преимущества:</h5>
+                    <p class="text-sm text-secondary">
+                      Высокое качество ключевых кадров, профессиональная подача, гибкость в пост-продакшене.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-lg p-8">
+                <div class="flex items-center mb-6">
+                  <div class="bg-green-100 p-3 rounded-full mr-4">
+                    <span class="text-green-600 font-bold text-lg">40%</span>
+                  </div>
+                  <h4 class="font-bold text-xl text-primary">AI-аватары и digital twins</h4>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-6">
+                  <div>
+                    <h5 class="font-semibold mb-3 text-secondary">HeyGen для создания:</h5>
+                    <ul class="space-y-2 text-sm text-secondary">
+                      <li>• Загрузка 5-минутного видео сотрудника</li>
+                      <li>• Создание Digital Twin с Avatar IV</li>
+                      <li>• Выбор фонов по брендбуку</li>
+                      <li>• Генерация выступлений по сценарию</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold mb-3 text-secondary">ElevenLabs для озвучки:</h5>
+                    <ul class="space-y-2 text-sm text-secondary">
+                      <li>• Запись 30-секундных образцов</li>
+                      <li>• Professional Voice Clone</li>
+                      <li>• Интеграция с аватарами</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                  <p class="text-sm text-blue-800">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    <strong>Результат:</strong> Гиперреалистичные аватары с полным телом и естественным голосом.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-lg p-8">
+                <div class="flex items-center mb-6">
+                  <div class="bg-purple-100 p-3 rounded-full mr-4">
+                    <span class="text-purple-600 font-bold text-lg">30%</span>
+                  </div>
+                  <h4 class="font-bold text-xl text-primary">Чистая AI-генерация</h4>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-6">
+                  <div>
+                    <h5 class="font-semibold mb-3 text-secondary">Окружение и атмосфера:</h5>
+                    <ul class="space-y-2 text-sm text-secondary">
+                      <li>• Google Veo 3.1 для офисных сцен</li>
+                      <li>• Kling AI для длинных сцен (2-3 минуты)</li>
+                      <li>• Runway Gen-4 для динамичных переходов</li>
+                      <li>• Wan 2.5 для кинематографичности</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold mb-3 text-secondary">Абстрактные визуализации:</h5>
+                    <ul class="space-y-2 text-sm text-secondary">
+                      <li>• Midjourney для статичных элементов</li>
+                      <li>• Runway Gen-4 References для анимации</li>
+                      <li>• Интеграция скринкастов</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Budget Strategies -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-neutral">3.3 Экономичные подходы</h3>
+
+            <div class="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 p-8 rounded-2xl mb-8">
+              <h4 class="font-bold text-xl text-green-800 mb-6">
+                <i class="fas fa-piggy-bank mr-3"></i>
+                Стратегия &#34;Одна платформа + дополнения&#34;
+              </h4>
+              <p class="text-green-700 mb-6">
+                <strong>Рекомендуемый набор ($45-50/месяц)</strong> — этого достаточно для 20-минутного корпоративного видео!
+              </p>
+
+              <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                  <div class="flex items-center justify-between mb-2">
+                    <h5 class="font-semibold text-sm">Krea AI Essential</h5>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">$10/мес</span>
+                  </div>
+                  <p class="text-xs text-secondary">Основная платформа для генерации</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                  <div class="flex items-center justify-between mb-2">
+                    <h5 class="font-semibold text-sm">ElevenLabs Starter</h5>
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">$5/мес</span>
+                  </div>
+                  <p class="text-xs text-secondary">Синтез речи</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                  <div class="flex items-center justify-between mb-2">
+                    <h5 class="font-semibold text-sm">Suno базовый</h5>
+                    <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">$8/мес</span>
+                  </div>
+                  <p class="text-xs text-secondary">Генерация музыки</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                  <div class="flex items-center justify-between mb-2">
+                    <h5 class="font-semibold text-sm">DaVinci Resolve</h5>
+                    <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Бесплатно</span>
+                  </div>
+                  <p class="text-xs text-secondary">Монтаж</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                  <div class="flex items-center justify-between mb-2">
+                    <h5 class="font-semibold text-sm">Descript Free</h5>
+                    <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Бесплатно</span>
+                  </div>
+                  <p class="text-xs text-secondary">Транскрипция</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+              <h4 class="font-bold text-lg text-primary mb-4">
+                <i class="fas fa-coins mr-2"></i>Альтернативный вариант через Fal.AI
+              </h4>
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h5 class="font-semibold mb-3 text-secondary">Преимущества:</h5>
+                  <ul class="space-y-2 text-sm text-secondary">
+                    <li class="flex items-center">
+                      <i class="fas fa-dollar-sign text-green-500 mr-2"></i>
+                      Pay-per-use модель
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-layer-group text-blue-500 mr-2"></i>
+                      Доступ к 600+ моделям
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-times text-red-500 mr-2"></i>
+                      Без фиксированной подписки
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 class="font-semibold mb-3 text-secondary">Требования:</h5>
+                  <ul class="space-y-2 text-sm text-secondary">
+                    <li class="flex items-center">
+                      <i class="fas fa-code text-purple-500 mr-2"></i>
+                      Технические навыки
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-chart-line text-orange-500 mr-2"></i>
+                      Понимание моделей
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-calculator text-blue-500 mr-2"></i>
+                      Планирование бюджета
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mt-4 text-center">
+                <a href="https://fal.ai " class="citation text-sm">
+                  <i class="fas fa-external-link-alt mr-1"></i>fal.ai - платформа для экспертов
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popular Workflows Section -->
+      <section id="popular-workflows" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-6xl">
+          <h2 class="font-serif text-4xl font-bold mb-12 text-primary">4. Популярные Workflow из практики</h2>
+
+          <!-- Workflow 1 -->
+          <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+            <div class="flex items-center mb-6">
+              <div class="bg-blue-100 p-3 rounded-full mr-4">
+                <i class="fas fa-rocket text-blue-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-xl text-primary mb-2">Workflow 1: &#34;Быстрый корпоратив&#34;</h3>
+                <p class="text-sm text-secondary">5-7 часов на полный цикл производства</p>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div class="bg-blue-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-sm mb-2 text-blue-800">Инструменты</h4>
+                <ul class="text-xs text-blue-700 space-y-1">
+                  <li>• Krea AI для генерации</li>
+                  <li>• ElevenLabs для озвучки</li>
+                  <li>• DaVinci Resolve для сборки</li>
+                </ul>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-sm mb-2">Час 1: Pre-production</h4>
+                <p class="text-xs text-secondary">Сценарий и shot list</p>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-sm mb-2">Часы 2-3: Генерация</h4>
+                <p class="text-xs text-secondary">30-40 клипов, озвучка</p>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-sm mb-2">Часы 4-5: Сборка</h4>
+                <p class="text-xs text-secondary">Монтаж, переходы, графика</p>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-sm mb-2">Часы 6-7: Финализация</h4>
+                <p class="text-xs text-secondary">Цветокоррекция, экспорт</p>
+              </div>
+              <div class="bg-green-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-sm mb-2 text-green-800">Результат</h4>
+                <p class="text-xs text-green-700">Готовый корпоративный ролик за 5-7 часов</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Workflow 2 -->
+          <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+            <div class="flex items-center mb-6">
+              <div class="bg-purple-100 p-3 rounded-full mr-4">
+                <i class="fas fa-palette text-purple-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-xl text-primary mb-2">Workflow 2: &#34;Консистентный нарратив&#34; с Seedream 4.0</h3>
+                <p class="text-sm text-secondary">Создание единого стиля и персонажей</p>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <div class="bg-purple-200 w-8 h-8 rounded-full flex items-center justify-center mr-4">
+                  <span class="text-purple-700 text-sm font-bold">1</span>
+                </div>
+                <div class="flex-1">
+                  <h4 class="font-semibold text-sm">Создание базового изображения героя</h4>
+                  <p class="text-xs text-secondary">Seedream 4.0, 4K разрешение</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div class="bg-purple-200 w-8 h-8 rounded-full flex items-center justify-center mr-4">
+                  <span class="text-purple-700 text-sm font-bold">2</span>
+                </div>
+                <div class="flex-1">
+                  <h4 class="font-semibold text-sm">Генерация 9 вариаций одновременно</h4>
+                  <p class="text-xs text-secondary">Консистентность персонажа в разных ракурсах</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div class="bg-purple-200 w-8 h-8 rounded-full flex items-center justify-center mr-4">
+                  <span class="text-purple-700 text-sm font-bold">3</span>
+                </div>
+                <div class="flex-1">
+                  <h4 class="font-semibold text-sm">Использование как ingredients</h4>
+                  <p class="text-xs text-secondary">В видеогенераторах (Veo 3.1, Kling AI)</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div class="bg-purple-200 w-8 h-8 rounded-full flex items-center justify-center mr-4">
+                  <span class="text-purple-700 text-sm font-bold">4</span>
+                </div>
+                <div class="flex-1">
+                  <h4 class="font-semibold text-sm">Получение консистентного видео</h4>
+                  <p class="text-xs text-secondary">С сохранением стиля и персонажей</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Workflow 3 -->
+          <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+            <div class="flex items-center mb-6">
+              <div class="bg-green-100 p-3 rounded-full mr-4">
+                <i class="fas fa-mobile-alt text-green-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-xl text-primary mb-2">Workflow 3: &#34;Гибридная съёмка&#34; для презентаций</h3>
+                <p class="text-sm text-secondary">Сочетание реальной и AI-сгенерированной съемки</p>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-lg mb-4 text-secondary">Процесс:</h4>
+                <div class="space-y-3">
+                  <div class="flex items-start">
+                    <div class="bg-green-200 w-6 h-6 rounded-full flex items-center justify-center mr-3 mt-1">
+                      <span class="text-green-700 text-xs font-bold">1</span>
+                    </div>
+                    <div>
+                      <h5 class="font-semibold text-sm">Съемка CEO на телефон</h5>
+                      <p class="text-xs text-secondary">Вертикальный формат, естественное освещение</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <div class="bg-green-200 w-6 h-6 rounded-full flex items-center justify-center mr-3 mt-1">
+                      <span class="text-green-700 text-xs font-bold">2</span>
+                    </div>
+                    <div>
+                      <h5 class="font-semibold text-sm">Загрузка в Krea AI или Flow</h5>
+                      <p class="text-xs text-secondary">Применение Frames to Video</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <div class="bg-green-200 w-6 h-6 rounded-full flex items-center justify-center mr-3 mt-1">
+                      <span class="text-green-700 text-xs font-bold">3</span>
+                    </div>
+                    <div>
+                      <h5 class="font-semibold text-sm">Добавление AI-окружения</h5>
+                      <p class="text-xs text-secondary">Офис, конференц-зал, природа</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <div class="bg-green-200 w-6 h-6 rounded-full flex items-center justify-center mr-3 mt-1">
+                      <span class="text-green-700 text-xs font-bold">4</span>
+                    </div>
+                    <div>
+                      <h5 class="font-semibold text-sm">Сборка в едином стиле</h5>
+                      <p class="text-xs text-secondary">Цветокоррекция, переходы</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center justify-center">
+                <div class="text-center p-6 bg-green-50 rounded-xl">
+                  <i class="fas fa-trophy text-4xl text-green-600 mb-4"></i>
+                  <h5 class="font-bold text-lg text-green-800 mb-2">Результат</h5>
+                  <p class="text-sm text-green-700">
+                    Профессиональная презентация с минимальными затратами на съемку
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Workflow 4 and 5 -->
+          <div class="grid lg:grid-cols-2 gap-8">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+              <div class="flex items-center mb-4">
+                <div class="bg-orange-100 p-3 rounded-full mr-4">
+                  <i class="fas fa-users text-orange-600 text-xl"></i>
+                </div>
+                <h3 class="font-bold text-lg text-primary">Workflow 4: &#34;Массовая персонализация&#34;</h3>
+              </div>
+              <div class="space-y-3 text-sm">
+                <div class="flex items-center">
+                  <span class="bg-orange-200 w-5 h-5 rounded-full flex items-center justify-center mr-3 text-xs font-bold text-orange-700">1</span>
+                  <span>Базовое видео с пробелами</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="bg-orange-200 w-5 h-5 rounded-full flex items-center justify-center mr-3 text-xs font-bold text-orange-700">2</span>
+                  <span>Создание аватара в HeyGen</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="bg-orange-200 w-5 h-5 rounded-full flex items-center justify-center mr-3 text-xs font-bold text-orange-700">3</span>
+                  <span>Генерация с именами клиентов</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="bg-orange-200 w-5 h-5 rounded-full flex items-center justify-center mr-3 text-xs font-bold text-orange-700">4</span>
+                  <span>Batch-обработка</span>
+                </div>
+              </div>
+              <div class="mt-4 p-3 bg-orange-50 rounded-lg">
+                <p class="text-xs text-orange-700">
+                  <strong>Результат:</strong> Персонализированные видео для каждого клиента
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+              <div class="flex items-center mb-4">
+                <div class="bg-gray-100 p-3 rounded-full mr-4">
+                  <i class="fas fa-gift text-gray-600 text-xl"></i>
+                </div>
+                <h3 class="font-bold text-lg text-primary">Workflow 5: &#34;Zero-budget продакшн&#34;</h3>
+              </div>
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between">
+                  <span>Сценарий:</span>
+                  <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">ChatGPT/Claude</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Изображения:</span>
+                  <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Seedream 4.0</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Видео:</span>
+                  <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Бесплатные кредиты</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Озвучка:</span>
+                  <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded">ElevenLabs free</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Музыка:</span>
+                  <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">YouTube Audio Library</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Монтаж:</span>
+                  <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">DaVinci Resolve</span>
+                </div>
+              </div>
+              <div class="mt-4 p-3 bg-gray-50 rounded-lg">
+                <p class="text-xs text-gray-700">
+                  <strong>Итог:</strong> Полноценный ролик без финансовых вложений
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tips Section -->
+      <section id="tips" class="py-16 bg-white">
+        <div class="container mx-auto px-6 max-w-6xl">
+          <h2 class="font-serif text-4xl font-bold mb-12 text-primary">5. Практические советы</h2>
+
+          <!-- Tool Selection -->
+          <div class="mb-12">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-neutral">5.1 Как выбрать правильный инструмент</h3>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+              <div class="bg-white rounded-2xl shadow-lg p-8 border-t-4 border-blue-500">
+                <h4 class="font-bold text-lg text-primary mb-4">
+                  <i class="fas fa-building mr-2"></i>Для офисных сцен
+                </h4>
+                <div class="space-y-3">
+                  <div class="flex items-start">
+                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs mr-3 mt-1">1</span>
+                    <div>
+                      <p class="font-semibold text-sm">Kling AI</p>
+                      <p class="text-xs text-secondary">Реализм людей, до 3 минут</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs mr-3 mt-1">2</span>
+                    <div>
+                      <p class="font-semibold text-sm">Veo 3.1</p>
+                      <p class="text-xs text-secondary">Встроенное аудио, 1080p</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs mr-3 mt-1">3</span>
+                    <div>
+                      <p class="font-semibold text-sm">Hailuo 2.3 Fast</p>
+                      <p class="text-xs text-secondary">-50% стоимости, экономный</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-lg p-8 border-t-4 border-purple-500">
+                <h4 class="font-bold text-lg text-primary mb-4">
+                  <i class="fas fa-palette mr-2"></i>Для абстрактных визуализаций
+                </h4>
+                <div class="space-y-3">
+                  <div class="flex items-start">
+                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs mr-3 mt-1">1</span>
+                    <div>
+                      <p class="font-semibold text-sm">Luma Ray3</p>
+                      <p class="text-xs text-secondary">HDR качество, 16-bit</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs mr-3 mt-1">2</span>
+                    <div>
+                      <p class="font-semibold text-sm">Seedream 4.0</p>
+                      <p class="text-xs text-secondary">Статичные элементы, 4K</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs mr-3 mt-1">3</span>
+                    <div>
+                      <p class="font-semibold text-sm">Stable Diffusion</p>
+                      <p class="text-xs text-secondary">Через Krea, open-source</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-lg p-8 border-t-4 border-teal-500">
+                <h4 class="font-bold text-lg text-primary mb-4">
+                  <i class="fas fa-language mr-2"></i>Для русскоязычных пользователей
+                </h4>
+                <div class="space-y-3">
+                  <div class="flex items-start">
+                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs mr-3 mt-1">1</span>
+                    <div>
+                      <p class="font-semibold text-sm">Kandinsky 5.0</p>
+                      <p class="text-xs text-secondary">Русский интерфейс, бесплатно</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs mr-3 mt-1">2</span>
+                    <div>
+                      <p class="font-semibold text-sm">Giga.Chat</p>
+                      <p class="text-xs text-secondary">Без VPN, доступен в РФ</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs mr-3 mt-1">3</span>
+                    <div>
+                      <p class="font-semibold text-sm">Редактирование</p>
+                      <p class="text-xs text-secondary">Вариации, upscale</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Common Mistakes -->
+          <div class="mb-12">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-neutral">5.2 Типичные ошибки начинающих</h3>
+
+            <div class="space-y-6">
+              <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-xl">
+                <h4 class="font-bold text-lg text-red-700 mb-3">
+                  <i class="fas fa-exclamation-triangle mr-2"></i>Ошибка 1: Попытка сгенерировать всё видео целиком
+                </h4>
+                <p class="text-red-600 mb-3">
+                  <strong>Решение:</strong> Разбивайте на сегменты по 5-10 секунд. Это позволяет лучше контролировать качество и экономить кредиты.
+                </p>
+                <div class="bg-white p-3 rounded-lg">
+                  <p class="text-sm text-secondary">
+                    <strong>Пример:</strong> Вместо 30-секундного ролика создайте 6 сегментов по 5 секунд и соедините в редакторе.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-xl">
+                <h4 class="font-bold text-lg text-yellow-700 mb-3">
+                  <i class="fas fa-palette mr-2"></i>Ошибка 2: Использование разных стилей
+                </h4>
+                <p class="text-yellow-600 mb-3">
+                  <strong>Решение:</strong> Создайте style reference в начале и используйте его для всех сегментов. Поддерживайте консистентность.
+                </p>
+                <div class="bg-white p-3 rounded-lg">
+                  <p class="text-sm text-secondary">
+                    <strong>Подсказка:</strong> Используйте функции &#34;References&#34; в Runway Gen-4 или &#34;Ingredients&#34; в Flow.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl">
+                <h4 class="font-bold text-lg text-blue-700 mb-3">
+                  <i class="fas fa-volume-mute mr-2"></i>Ошибка 3: Игнорирование аудио
+                </h4>
+                <p class="text-blue-600 mb-3">
+                  <strong>Решение:</strong> Выбирайте инструменты со встроенным звуком (Veo 3.1, LTX-2) или подбирайте аудио отдельно.
+                </p>
+                <div class="bg-white p-3 rounded-lg">
+                  <p class="text-sm text-secondary">
+                    <strong>Рекомендация:</strong> Suno для музыки, ElevenLabs для голоса, Adobe Stock для звуковых эффектов.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-r-xl">
+                <h4 class="font-bold text-lg text-purple-700 mb-3">
+                  <i class="fas fa-credit-card mr-2"></i>Ошибка 4: Перерасход кредитов
+                </h4>
+                <p class="text-purple-600 mb-3">
+                  <strong>Решение:</strong> Используйте Draft/Fast режимы для черновиков. Тестируйте промпты на коротких сегментах.
+                </p>
+                <div class="bg-white p-3 rounded-lg">
+                  <p class="text-sm text-secondary">
+                    <strong>Совет:</strong> Начните с бесплатных пробных версий и кредитов перед покупкой подписки.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Readiness Checklist -->
+          <div class="mb-12">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-neutral">5.3 Чек-лист готовности проекта</h3>
+
+            <div class="bg-gradient-to-r from-gray-50 to-blue-50 border border-gray-200 p-8 rounded-2xl">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                  <div class="flex items-center">
+                    <input type="checkbox" class="mr-3 h-4 w-4 text-blue-600"/>
+                    <label class="text-sm">Детальный сценарий с таймингами</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input type="checkbox" class="mr-3 h-4 w-4 text-blue-600"/>
+                    <label class="text-sm">Список всех необходимых визуалов (shot list)</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input type="checkbox" class="mr-3 h-4 w-4 text-blue-600"/>
+                    <label class="text-sm">Выбранная цветовая палитра и стиль</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input type="checkbox" class="mr-3 h-4 w-4 text-blue-600"/>
+                    <label class="text-sm">Подготовленные промпты для каждой сцены</label>
+                  </div>
+                </div>
+                <div class="space-y-4">
+                  <div class="flex items-center">
+                    <input type="checkbox" class="mr-3 h-4 w-4 text-blue-600"/>
+                    <label class="text-sm">План В для критических элементов</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input type="checkbox" class="mr-3 h-4 w-4 text-blue-600"/>
+                    <label class="text-sm">Доступ к выбранным платформам</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input type="checkbox" class="mr-3 h-4 w-4 text-blue-600"/>
+                    <label class="text-sm">Резерв времени (+50% от плана)</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input type="checkbox" class="mr-3 h-4 w-4 text-blue-600"/>
+                    <label class="text-sm">Тестовый рендер ключевых сцен</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8 p-4 bg-blue-600 text-white rounded-lg">
+                <p class="text-center">
+                  <i class="fas fa-lightbulb mr-2"></i>
+                  <strong>Совет:</strong> Проверьте все пункты перед началом работы. Это сэкономит время и избавит от неожиданностей.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Appendix Section -->
+      <section id="appendix" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-6xl">
+          <h2 class="font-serif text-4xl font-bold mb-12 text-primary">6. Приложения</h2>
+
+          <!-- Prompt Examples -->
+          <div class="mb-12">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-neutral">Приложение А: Примеры промптов</h3>
+
+            <div class="space-y-8">
+              <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h4 class="font-bold text-lg text-primary mb-4">
+                  <i class="fas fa-building mr-2"></i>Для офисных сцен (Veo 3.1)
+                </h4>
+                <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                  <code class="text-sm text-blue-800">
+                                    <p class="font-semibold mb-2">Промпт:</p>
+                                    &#34;Professional corporate office interior, modern open space, employees collaborating at workstations, warm natural lighting, cinematic camera movement, ambient office sounds, 16:9 aspect ratio, 1080p quality&#34;
+                                </code>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg">
+                  <p class="text-sm text-green-700">
+                    <i class="fas fa-lightbulb mr-2"></i>
+                    <strong>Совет:</strong> Добавьте &#34;cinematic lighting&#34; и &#34;depth of field&#34; для более профессионального вида.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h4 class="font-bold text-lg text-primary mb-4">
+                  <i class="fas fa-gift mr-2"></i>Для праздничного контента (Kling AI)
+                </h4>
+                <div class="bg-purple-50 p-4 rounded-lg mb-4">
+                  <code class="text-sm text-purple-800">
+                                    <p class="font-semibold mb-2">Промпт:</p>
+                                    &#34;Coca-Cola Christmas style corporate video, warm red and gold accents, festive office atmosphere, happy employees celebrating, magical transitions with sparkles, professional lighting&#34;
+                                </code>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg">
+                  <p class="text-sm text-yellow-700">
+                    <i class="fas fa-star mr-2"></i>
+                    <strong>Совет:</strong> Используйте известные бренды для стилевой отсылки, но адаптируйте под свой брендбук.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Kandinsky 5.0 Prompt Example -->
+              <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h4 class="font-bold text-lg text-primary mb-4">
+                  <i class="fas fa-brain mr-2"></i>Для корпоративной презентации (Kandinsky 5.0)
+                </h4>
+                <div class="bg-teal-50 p-4 rounded-lg mb-4">
+                  <code class="text-sm text-teal-800">
+                                    <p class="font-semibold mb-2">Промпт:</p>
+                                    &#34;Современный офисный сотрудник в деловом костюме, презентует на фоне светлого конференц-зала, профессиональное освещение, стиль минимализм, высокое качество, реалистичный стиль&#34;
+                                </code>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg">
+                  <p class="text-sm text-yellow-700">
+                    <i class="fas fa-star mr-2"></i>
+                    <strong>Совет:</strong> Используйте русский язык для промптов в Kandinsky 5.0 для более точных результатов.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h4 class="font-bold text-lg text-primary mb-4">
+                  <i class="fas fa-chart-bar mr-2"></i>Для инфографики (Seedream 4.0)
+                </h4>
+                <div class="bg-orange-50 p-4 rounded-lg mb-4">
+                  <code class="text-sm text-orange-800">
+                                    <p class="font-semibold mb-2">Промпт:</p>
+                                    &#34;Clean corporate infographic showing quarterly results, modern flat design, company brand colors (blue and white), professional charts and graphs, minimal animation style&#34;
+                                </code>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <p class="text-sm text-gray-700">
+                    <i class="fas fa-palette mr-2"></i>
+                    <strong>Совет:</strong> Указывайте конкретные цвета бренда и типы графиков для точного соответствия.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Platform Comparison -->
+          <div class="mb-12">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-neutral">Приложение Б: Сравнительная таблица платформ</h3>
+
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div class="overflow-x-auto">
+                <table class="w-full">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Платформа</th>
+                      <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Цена/месяц</th>
+                      <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Видео длина</th>
+                      <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Качество</th>
+                      <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Для кого</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200">
+                    <tr class="hover:bg-blue-50 transition-colors">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="bg-blue-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-star text-blue-600"></i>
+                          </div>
+                          <div>
+                            <div class="text-sm font-medium text-gray-900">Krea AI Essential</div>
+                            <div class="text-xs text-gray-500">Все в одном</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$10</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">4-10 сек</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">Хорошее</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Начинающие</td>
+                    </tr>
+                    <tr class="hover:bg-blue-50 transition-colors">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="bg-green-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-crown text-green-600"></i>
+                          </div>
+                          <div>
+                            <div class="text-sm font-medium text-gray-900">Google Flow (Veo 3.1)</div>
+                            <div class="text-xs text-gray-500">State-of-the-art</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Pay-per-use</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">до 60 сек</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Отличное</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Все уровни</td>
+                    </tr>
+                    <tr class="hover:bg-blue-50 transition-colors">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="bg-purple-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-video text-purple-600"></i>
+                          </div>
+                          <div>
+                            <div class="text-sm font-medium text-gray-900">Kling AI Pro</div>
+                            <div class="text-xs text-gray-500">Максимальная длительность</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$30-50</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">до 3 мин</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Отличное</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Профессионалы</td>
+                    </tr>
+                    <tr class="hover:bg-blue-50 transition-colors">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="bg-teal-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-brain text-teal-600"></i>
+                          </div>
+                          <div>
+                            <div class="text-sm font-medium text-gray-900">Kandinsky 5.0</div>
+                            <div class="text-xs text-gray-500">Русская платформа</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Бесплатно</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10-30 сек</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">Хорошее</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Русскоязычные</td>
+                    </tr>
+                    <tr class="hover:bg-blue-50 transition-colors">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="bg-orange-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-bolt text-orange-600"></i>
+                          </div>
+                          <div>
+                            <div class="text-sm font-medium text-gray-900">Hailuo Fast</div>
+                            <div class="text-xs text-gray-500">Экономичный вариант</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Pay-per-use</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">10 сек</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">Хорошее</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Экономные</td>
+                    </tr>
+                    <tr class="hover:bg-blue-50 transition-colors">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="bg-indigo-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-user-tie text-indigo-600"></i>
+                          </div>
+                          <div>
+                            <div class="text-sm font-medium text-gray-900">HeyGen</div>
+                            <div class="text-xs text-gray-500">Аватары и озвучка</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$24+</td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Без лимита</td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Отличное</span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Корпоративы</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Time Estimates -->
+          <div class="mb-12">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-neutral">Приложение В: Временные оценки этапов</h3>
+
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+              <div class="overflow-x-auto">
+                <table class="w-full">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Этап</th>
+                      <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Время (часы)</th>
+                      <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Описание</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200">
+                    <tr class="hover:bg-blue-50 transition-colors">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="bg-blue-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-clipboard-list text-blue-600"></i>
+                          </div>
+                          <div class="text
